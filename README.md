@@ -12,6 +12,7 @@ We will upgrade v1 and v2 as soon as possible (should have higher accuracy and m
 * `2019.09.17` face_detection: model v2 is upgraded! After fixing the bug, we have fine-tuned the old v2 model. The accuracy on 
 WIDER FACE is improved significantly! Please try new v2.
 * `2019.09.18` pedestrian_detection: preview version of model v1 for Caltech Pedestrian Dataset is released.
+* `2019.09.23` head_detection: model v1 for brainwash dataset is released.
 
 ## Introduction
 This repo releases the source code of paper "[LFFD: A Light and Fast Face Detector for Edge Devices](https://arxiv.org/abs/1904.10633)". Our paper presents a light and fast face detector (**LFFD**) for edge devices.
