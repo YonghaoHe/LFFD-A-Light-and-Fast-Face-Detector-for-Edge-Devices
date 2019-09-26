@@ -3,6 +3,7 @@ We use the brainwash dataset introduced by paper [End-to-end people detection in
 
 ### Recent Update
 * `2019.09.23` model v1 for brainwash dataset is released.
+* `2019.09.26` brainwash dataset (and packed pkl) is uploaded for downloading.
 
 ### Brief Introduction to Model Version
 * v1 - is designed for brainwash dataset, covering head scale [10, 160]. It has 4 branches. Please check 
@@ -52,3 +53,9 @@ The v1 significantly outperforms the existing methods.
 
 ### User Instructions
 Please refer to [README in face_detection](../face_detection/README.md) for details.
+
+### Data Download
+We provide original and packed data of brainwash dataset. We provide three ways to download the packed data:
+* [Baidu Yunpan](https://pan.baidu.com/s/1VdiXHhtw9aNaU1E9PhVwtQ) (pwd:zvma)
+* [MS OneDrive]
+* [Google Drive]
