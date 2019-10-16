@@ -1,7 +1,7 @@
 # A Light and Fast Face Detector for Edge Devices
 **This repo is updated frequently, keeping up with the latest code is highly recommended.**
 
-## Recent Update## Recent Update
+## Recent Update
 * `2019.07.25` This repos is first online. Face detection code and trained models are released.
 * `2019.08.15` This repos is formally released. Any advice and error reports are sincerely welcome.
 * `2019.08.22` face_detection: latency evaluation on TX2 is added.
@@ -181,7 +181,7 @@ year={2019}
 - [x] head detection
 - [ ] vehicle detection
 - [x] license plate detection
-- [x] PyTorch version
+- [x] [PyTorch version (becauseofAI)](https://github.com/becauseofAI/lffd-pytorch)
 
 ## Contact
 Yonghao He
