@@ -1,0 +1,1035 @@
+name: "mxnet-model"
+input: "data"
+input_shape
+{
+    dim:1
+    dim:3
+    dim:250
+    dim:250
+}
+
+layer {
+    bottom: "data"
+    top: "conv1"
+    name: "conv1"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 0
+        stride: 2
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv1"
+    top: "relu_conv1"
+    name: "relu_conv1"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv1"
+    top: "conv2"
+    name: "conv2"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 0
+        stride: 2
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv2"
+    top: "relu_conv2"
+    name: "relu_conv2"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv2"
+    top: "conv3"
+    name: "conv3"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv3"
+    top: "relu_conv3"
+    name: "relu_conv3"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv3"
+    top: "conv4"
+    name: "conv4"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    name: "_plus7"
+    type: "Eltwise"
+    bottom: "conv2"
+    bottom: "conv4"
+    top: "_plus7"
+}
+
+layer {
+    bottom: "_plus7"
+    top: "relu_conv4"
+    name: "relu_conv4"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv4"
+    top: "conv5"
+    name: "conv5"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv5"
+    top: "relu_conv5"
+    name: "relu_conv5"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv5"
+    top: "conv6"
+    name: "conv6"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    name: "_plus8"
+    type: "Eltwise"
+    bottom: "_plus7"
+    bottom: "conv6"
+    top: "_plus8"
+}
+
+layer {
+    bottom: "_plus8"
+    top: "relu_conv6"
+    name: "relu_conv6"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv6"
+    top: "conv7"
+    name: "conv7"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv7"
+    top: "relu_conv7"
+    name: "relu_conv7"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv7"
+    top: "conv8"
+    name: "conv8"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    name: "_plus9"
+    type: "Eltwise"
+    bottom: "_plus8"
+    bottom: "conv8"
+    top: "_plus9"
+}
+
+layer {
+    bottom: "_plus9"
+    top: "relu_conv8"
+    name: "relu_conv8"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv8"
+    top: "conv8_1"
+    name: "conv8_1"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv8_1"
+    top: "relu_conv8_1"
+    name: "relu_conv8_1"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv8_1"
+    top: "conv8_2_score"
+    name: "conv8_2_score"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv8_2_score"
+    top: "relu_conv8_2_score"
+    name: "relu_conv8_2_score"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv8_2_score"
+    top: "conv8_3_score"
+    name: "conv8_3_score"
+    type: "Convolution"
+    convolution_param {
+        num_output: 2
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv8_3_score"
+    top: "softmax0"
+    name: "softmax0"
+    type: "Softmax"
+}
+
+layer {
+    bottom: "softmax0"
+    top: "slice_axis20_1"
+    top: "slice_axis20_2"
+    name: "slice_axis20"
+    type: "Slice"
+    slice_param {
+        axis: 1
+        slice_point: 1
+    }
+}
+
+layer {
+    bottom: "relu_conv8_1"
+    top: "conv8_2_bbox"
+    name: "conv8_2_bbox"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv8_2_bbox"
+    top: "relu_conv8_2_bbox"
+    name: "relu_conv8_2_bbox"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv8_2_bbox"
+    top: "conv8_3_bbox"
+    name: "conv8_3_bbox"
+    type: "Convolution"
+    convolution_param {
+        num_output: 4
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "relu_conv8"
+    top: "conv9"
+    name: "conv9"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 0
+        stride: 2
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv9"
+    top: "relu_conv9"
+    name: "relu_conv9"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv9"
+    top: "conv10"
+    name: "conv10"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv10"
+    top: "relu_conv10"
+    name: "relu_conv10"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv10"
+    top: "conv11"
+    name: "conv11"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    name: "_plus10"
+    type: "Eltwise"
+    bottom: "conv9"
+    bottom: "conv11"
+    top: "_plus10"
+}
+
+layer {
+    bottom: "_plus10"
+    top: "relu_conv11"
+    name: "relu_conv11"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv11"
+    top: "conv11_1"
+    name: "conv11_1"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv11_1"
+    top: "relu_conv11_1"
+    name: "relu_conv11_1"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv11_1"
+    top: "conv11_2_score"
+    name: "conv11_2_score"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv11_2_score"
+    top: "relu_conv11_2_score"
+    name: "relu_conv11_2_score"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv11_2_score"
+    top: "conv11_3_score"
+    name: "conv11_3_score"
+    type: "Convolution"
+    convolution_param {
+        num_output: 2
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv11_3_score"
+    top: "softmax1"
+    name: "softmax1"
+    type: "Softmax"
+}
+
+layer {
+    bottom: "softmax1"
+    top: "slice_axis21_1"
+    top: "slice_axis21_2"
+    name: "slice_axis21"
+    type: "Slice"
+    slice_param {
+        axis: 1
+        slice_point: 1
+    }
+}
+
+layer {
+    bottom: "relu_conv11_1"
+    top: "conv11_2_bbox"
+    name: "conv11_2_bbox"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv11_2_bbox"
+    top: "relu_conv11_2_bbox"
+    name: "relu_conv11_2_bbox"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv11_2_bbox"
+    top: "conv11_3_bbox"
+    name: "conv11_3_bbox"
+    type: "Convolution"
+    convolution_param {
+        num_output: 4
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "relu_conv11"
+    top: "conv12"
+    name: "conv12"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 0
+        stride: 2
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv12"
+    top: "relu_conv12"
+    name: "relu_conv12"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv12"
+    top: "conv13"
+    name: "conv13"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv13"
+    top: "relu_conv13"
+    name: "relu_conv13"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv13"
+    top: "conv14"
+    name: "conv14"
+    type: "Convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    name: "_plus11"
+    type: "Eltwise"
+    bottom: "conv12"
+    bottom: "conv14"
+    top: "_plus11"
+}
+
+layer {
+    bottom: "_plus11"
+    top: "relu_conv14"
+    name: "relu_conv14"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv14"
+    top: "conv14_1"
+    name: "conv14_1"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv14_1"
+    top: "relu_conv14_1"
+    name: "relu_conv14_1"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv14_1"
+    top: "conv14_2_score"
+    name: "conv14_2_score"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv14_2_score"
+    top: "relu_conv14_2_score"
+    name: "relu_conv14_2_score"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv14_2_score"
+    top: "conv14_3_score"
+    name: "conv14_3_score"
+    type: "Convolution"
+    convolution_param {
+        num_output: 2
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv14_3_score"
+    top: "softmax2"
+    name: "softmax2"
+    type: "Softmax"
+}
+
+layer {
+    bottom: "softmax2"
+    top: "slice_axis22_1"
+    top: "slice_axis22_2"
+    name: "slice_axis22"
+    type: "Slice"
+    slice_param {
+        axis: 1
+        slice_point: 1
+    }
+}
+
+layer {
+    bottom: "relu_conv14_1"
+    top: "conv14_2_bbox"
+    name: "conv14_2_bbox"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv14_2_bbox"
+    top: "relu_conv14_2_bbox"
+    name: "relu_conv14_2_bbox"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv14_2_bbox"
+    top: "conv14_3_bbox"
+    name: "conv14_3_bbox"
+    type: "Convolution"
+    convolution_param {
+        num_output: 4
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "relu_conv14"
+    top: "conv15"
+    name: "conv15"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 0
+        stride: 2
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv15"
+    top: "relu_conv15"
+    name: "relu_conv15"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv15"
+    top: "conv16"
+    name: "conv16"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv16"
+    top: "relu_conv16"
+    name: "relu_conv16"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv16"
+    top: "conv17"
+    name: "conv17"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    name: "_plus12"
+    type: "Eltwise"
+    bottom: "conv15"
+    bottom: "conv17"
+    top: "_plus12"
+}
+
+layer {
+    bottom: "_plus12"
+    top: "relu_conv17"
+    name: "relu_conv17"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv17"
+    top: "conv17_1"
+    name: "conv17_1"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv17_1"
+    top: "relu_conv17_1"
+    name: "relu_conv17_1"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv17_1"
+    top: "conv17_2_score"
+    name: "conv17_2_score"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv17_2_score"
+    top: "relu_conv17_2_score"
+    name: "relu_conv17_2_score"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv17_2_score"
+    top: "conv17_3_score"
+    name: "conv17_3_score"
+    type: "Convolution"
+    convolution_param {
+        num_output: 2
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv17_3_score"
+    top: "softmax3"
+    name: "softmax3"
+    type: "Softmax"
+}
+
+layer {
+    bottom: "softmax3"
+    top: "slice_axis23_1"
+    top: "slice_axis23_2"
+    name: "slice_axis23"
+    type: "Slice"
+    slice_param {
+        axis: 1
+        slice_point: 1
+    }
+}
+
+layer {
+    bottom: "relu_conv17_1"
+    top: "conv17_2_bbox"
+    name: "conv17_2_bbox"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv17_2_bbox"
+    top: "relu_conv17_2_bbox"
+    name: "relu_conv17_2_bbox"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv17_2_bbox"
+    top: "conv17_3_bbox"
+    name: "conv17_3_bbox"
+    type: "Convolution"
+    convolution_param {
+        num_output: 4
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "relu_conv17"
+    top: "conv18"
+    name: "conv18"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 0
+        stride: 2
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv18"
+    top: "relu_conv18"
+    name: "relu_conv18"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv18"
+    top: "conv19"
+    name: "conv19"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv19"
+    top: "relu_conv19"
+    name: "relu_conv19"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv19"
+    top: "conv20"
+    name: "conv20"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    name: "_plus13"
+    type: "Eltwise"
+    bottom: "conv18"
+    bottom: "conv20"
+    top: "_plus13"
+}
+
+layer {
+    bottom: "_plus13"
+    top: "relu_conv20"
+    name: "relu_conv20"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv20"
+    top: "conv20_1"
+    name: "conv20_1"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv20_1"
+    top: "relu_conv20_1"
+    name: "relu_conv20_1"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv20_1"
+    top: "conv20_2_score"
+    name: "conv20_2_score"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv20_2_score"
+    top: "relu_conv20_2_score"
+    name: "relu_conv20_2_score"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv20_2_score"
+    top: "conv20_3_score"
+    name: "conv20_3_score"
+    type: "Convolution"
+    convolution_param {
+        num_output: 2
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv20_3_score"
+    top: "softmax4"
+    name: "softmax4"
+    type: "Softmax"
+}
+
+layer {
+    bottom: "softmax4"
+    top: "slice_axis24_1"
+    top: "slice_axis24_2"
+    name: "slice_axis24"
+    type: "Slice"
+    slice_param {
+        axis: 1
+        slice_point: 1
+    }
+}
+
+layer {
+    bottom: "relu_conv20_1"
+    top: "conv20_2_bbox"
+    name: "conv20_2_bbox"
+    type: "Convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
+
+layer {
+    bottom: "conv20_2_bbox"
+    top: "relu_conv20_2_bbox"
+    name: "relu_conv20_2_bbox"
+    type: "ReLU"
+}
+
+layer {
+    bottom: "relu_conv20_2_bbox"
+    top: "conv20_3_bbox"
+    name: "conv20_3_bbox"
+    type: "Convolution"
+    convolution_param {
+        num_output: 4
+        kernel_size: 1
+        pad: 0
+        stride: 1
+        bias_term: true
+    }
+}
