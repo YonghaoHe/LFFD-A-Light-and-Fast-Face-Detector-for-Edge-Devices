@@ -37,6 +37,7 @@ next generation framework for single-class detection. Any feedback is welcome.
 * `2019.10.16` face_detection: the preview of PyTorch version is ready ([link](https://github.com/becauseofAI/lffd-pytorch)). Any feedback is welcome.
 * `2019.10.16` Tips: data preparation is important, irrational values of (x,y,w,h) may introduce nan in training; we
 trained models with convs followed by BNs. But we found that the convergence is not stable, and can not reach a good point.
+* `2019.11.08` face_detection: caffe version of LFFD is provided by [vicwer](https://github.com/vicwer) (great thanks). Guys who are familiar with caffe can navigate to `/face_detection/caffemodel` for details.
 
 ## Introduction
 This repo releases the source code of paper "[LFFD: A Light and Fast Face Detector for Edge Devices](https://arxiv.org/abs/1904.10633)". Our paper presents a light and fast face detector (**LFFD**) for edge devices.
