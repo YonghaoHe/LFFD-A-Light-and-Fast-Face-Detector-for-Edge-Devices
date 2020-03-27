@@ -38,6 +38,8 @@ next generation framework for single-class detection. Any feedback is welcome.
 * `2019.10.16` Tips: data preparation is important, irrational values of (x,y,w,h) may introduce nan in training; we
 trained models with convs followed by BNs. But we found that the convergence is not stable, and can not reach a good point.
 * `2019.11.08` face_detection: caffe version of LFFD is provided by [vicwer](https://github.com/vicwer) (great thanks). Guys who are familiar with caffe can navigate to `/face_detection/caffemodel` for details.
+* `2020.03.27` license_plate_detection: model v1_small for CCPD dataset is released. v1_small has much less parameters than v1, hence it is much faster.
+The AP of v1_small is 0.982 (vs v1-0.989). Please check [README.md](./license_plate_detection/README.md). Besides, a [commercial-ready license plate recognition repo](https://github.com/xiangweizeng/mobile-lpr) which adopted LFFD as the detector is hightly recommended!
 
 ## Introduction
 This repo releases the source code of paper "[LFFD: A Light and Fast Face Detector for Edge Devices](https://arxiv.org/abs/1904.10633)". Our paper presents a light and fast face detector (**LFFD**) for edge devices.
