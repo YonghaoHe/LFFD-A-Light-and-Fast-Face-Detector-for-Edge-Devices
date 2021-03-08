@@ -1,5 +1,6 @@
 # A Light and Fast Face Detector for Edge Devices
-**This repo is updated frequently, keeping up with the latest code is highly recommended.**
+## Big News: LFD, which is a big update of LFFD, now is released (2020.03.09). It is strongly recommended to use LFD instead !!!
+Visit LFD Repo [here](https://github.com/YonghaoHe/LFD-A-Light-and-Fast-Detector). This repo will not be maintained from now on.
 
 ## Recent Update
 * `2019.07.25` This repos is first online. Face detection code and trained models are released.
